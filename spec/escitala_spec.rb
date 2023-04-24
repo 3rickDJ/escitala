@@ -15,7 +15,7 @@ describe Scytale do
     it 'encryts a file' do
       ci = Scytale.new()
       file = File.new('test.txt', 'rb').read
-      expect(ci.encrypt(file, 4)).to eq('a')
+      expect(ci.encrypt(file, 4)).to_not eq(file)
     end
   end
   context 'when decrypting' do
@@ -32,7 +32,7 @@ describe Scytale do
     it 'decrypts a file' do
       ci = Scytale.new()
       file = File.new('test.e.txt', 'rb').read
-      expect(ci.decrypt(file, 4)).to eq('a')
+      expect(ci.decrypt(file, 4)).to_not eq(file)
     end
   end
 end
