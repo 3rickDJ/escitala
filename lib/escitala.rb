@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Scytale Cipher
 class Scytale
   def encrypt(msg, key)
     l = (msg.size / key.to_f).ceil
@@ -13,6 +10,6 @@ class Scytale
 end
 
 if $PROGRAM_NAME == __FILE__
-  image_path = File.new('', rb)
+# image_path = File.new('', rb)
   # cipher = Scytale.new
 end
