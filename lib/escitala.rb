@@ -1,3 +1,4 @@
+require 'parallel'
 class Scytale
   def encrypt(msg, key)
     l = (msg.size / key.to_f).ceil
@@ -10,7 +11,7 @@ class Scytale
 
   def hack(msg, name='file', dir='files/')
     valid_size = (2..msg.size).filter { |key| msg.size % key == 0 }
-    valid_size.each do |key|
+    Parallel.each(valid_size, in_threads: 10) do |key|
       save_file(dir,  key.to_s, name, decrypt(msg, key))
     end
   end
@@ -21,13 +22,13 @@ class Scytale
 end
 
 if $PROGRAM_NAME == __FILE__
-  #name = File.expand_path('test.txt')
-  #msg = File.open('img.jpg', 'rb').read
-  #cipher = Scytale.new.encrypt(msg, 1027)
-  #File.open('ciphered.jpg', 'wb').write(cipher)
-  #data = File.open('ciphered.jpg', 'rb').read
-  #Scytale.new.hack(data, name='.jpg', dir='imgs/')
-  name = File.open('test.txt', 'rb').read
-  cipher = Scytale.new.encrypt(name, 1291)
-  Scytale.new.hack(cipher, name='.txt', dir='files/')
+  name = File.expand_path('test.txt')
+  msg = File.open('img.jpg', 'rb').read
+  cipher = Scytale.new.encrypt(msg, 1027)
+  File.open('ciphered.jpg', 'wb').write(cipher)
+  data = File.open('ciphered.jpg', 'rb').read
+  Scytale.new.hack(data, name='.jpg', dir='imgs/')
+  #name = File.open('test.txt', 'rb').read
+  #cipher = Scytale.new.encrypt(name, 1291)
+  #Scytale.new.hack(cipher, name='.txt', dir='files/')
 end
