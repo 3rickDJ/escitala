@@ -11,14 +11,12 @@ class Scytale
   def hack(msg, name='file', dir='files/')
     valid_size = (2..msg.size).filter { |key| msg.size % key == 0 }
     valid_size.each do |key|
-      a =  { key.to_s => decrypt(msg, key) }
-      save_file(dir, name, key.to_s, a[key.to_s])
-      puts a
+      save_file(dir,  key.to_s, name, decrypt(msg, key))
     end
   end
   :private
   def save_file(path, prefix, sufix, data)
-    File.open(path + sufix + '_' + prefix, 'wb').write(data)
+    File.open(path + prefix +  '_' + sufix, 'wb').write(data)
   end
 end
 
