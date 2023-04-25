@@ -22,9 +22,12 @@ end
 
 if $PROGRAM_NAME == __FILE__
   #name = File.expand_path('test.txt')
-  msg = File.open('img.jpg', 'rb').read
-  cipher = Scytale.new.encrypt(msg, 1027)
-  #puts cipher
-  #puts Scytale.new.decrypt(cipher, 4)
-  Scytale.new.hack(cipher, name='.jpg', dir='imgs/')
+  #msg = File.open('img.jpg', 'rb').read
+  #cipher = Scytale.new.encrypt(msg, 1027)
+  #File.open('ciphered.jpg', 'wb').write(cipher)
+  #data = File.open('ciphered.jpg', 'rb').read
+  #Scytale.new.hack(data, name='.jpg', dir='imgs/')
+  name = File.open('test.txt', 'rb').read
+  cipher = Scytale.new.encrypt(name, 1291)
+  Scytale.new.hack(cipher, name='.txt', dir='files/')
 end
