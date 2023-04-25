@@ -18,15 +18,15 @@ class Scytale
   end
   :private
   def save_file(path, prefix, sufix, data)
-    File.open(path + prefix + '_' + sufix, 'wb').write(data)
+    File.open(path + sufix + '_' + prefix, 'wb').write(data)
   end
 end
 
 if $PROGRAM_NAME == __FILE__
   #name = File.expand_path('test.txt')
-  msg = File.open('test.txt', 'rb').read
+  msg = File.open('img.jpg', 'rb').read
   cipher = Scytale.new.encrypt(msg, 1027)
   #puts cipher
   #puts Scytale.new.decrypt(cipher, 4)
-  Scytale.new.hack(cipher)
+  Scytale.new.hack(cipher, name='.jpg', dir='imgs/')
 end
