@@ -17,6 +17,12 @@ describe Scytale do
       file = File.new('test.txt', 'rb').read
       expect(ci.encrypt(file, 4)).to_not eq(file)
     end
+    it 'encryts a jpg image' do
+      ci = Scytale.new()
+      file = File.new('img.jpg', 'rb').read
+      File.open('img.e.jpg', 'wb').write(ci.encrypt(file, 91))
+      expect(ci.encrypt(file, 91)).to_not eq(file)
+    end
   end
   context 'when decrypting' do
     it 'returns "holacomoestas" ' do
@@ -33,6 +39,12 @@ describe Scytale do
       ci = Scytale.new()
       file = File.new('test.e.txt', 'rb').read
       expect(ci.decrypt(file, 4)).to_not eq(file)
+    end
+    it 'encryts a jpg image' do
+      ci = Scytale.new()
+      file = File.new('img.e.jpg', 'rb').read
+      File.open('img.de.jpg', 'wb').write(ci.decrypt(file, 91))
+      expect(ci.encrypt(file, 91)).to_not eq(file)
     end
   end
 end
