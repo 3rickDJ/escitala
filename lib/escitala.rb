@@ -36,15 +36,13 @@ end
 
 if $PROGRAM_NAME == __FILE__
   name = File.expand_path('test.txt')
-  msg = File.open('img.jpg', 'rb').read
+  msg = data('img.jpg')
   cipher = Scytale.new.encrypt(msg, 1027)
-  # read from keyborad
-  #input = gets.chomp
-  input = "la vaca lola tiene cabeza y tiene cola😏 y hace muuuu"
-  cipher = Scytale.new.encrypt(input, 18)
+  #input = "la vaca lola tiene cabeza y tiene cola😏 y hace muuuu"
+  #cipher = Scytale.new.encrypt(input, 18)
   #File.open('ciphered.jpg', 'wb').write(cipher)
   #data = File.open('ciphered.jpg', 'rb').read
-  Scytale.new.hack_puts(cipher)
+  Scytale.new.hack(cipher)
   #Scytale.new.hack(cipher, name='.jpg', dir='imgs/')
   #name = File.open('test.txt', 'rb').read
   #cipher = Scytale.new.encrypt(name, 1291)
